@@ -7,8 +7,7 @@ const mailer=require('../utils/mailer')
 const course={
     courses:async(req,res)=>{
         try{
-            const filter=req.query;
-            const {page=1,limit=10}=req.query;
+            const {filter,page=1,limit=10}=req.query;
             const offset = (page - 1) * limit;
             if(!filter)
             {
