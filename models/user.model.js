@@ -14,23 +14,11 @@ const User=sequelize.define('User',{
     email:{
         type:DataTypes.STRING,
         allowNull: false,
-        unique: true,
-        validate:{
-            isEmail:{
-                msg:'invalid email'
-            }
-        }
+        unique: true
     },
     password:{
         type:DataTypes.STRING,
-        allowNull:false,
-        validate:{
-            isStrongPassword(value) {
-                if (!/\d/.test(value) || !/[a-zA-Z]/.test(value) || value.length < 8) {
-                    throw new Error('Password must be at least 8 characters long and contain at least one letter and one number');
-                }
-            }
-        }
+        allowNull:false
     },
     profilePhoto:{
         type:DataTypes.STRING
