@@ -46,7 +46,7 @@ const course={
         try{
             const userId=req.user;
             const user=await User.findOne({where:{userId:userId}});
-            const enrolledCourses=await user.getCourse();
+            const enrolledCourses=await user.getCourses();
             return res.status(200).json({enrolledCourses});
         }
         catch(err)
