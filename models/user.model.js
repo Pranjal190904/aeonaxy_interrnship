@@ -30,6 +30,13 @@ const User=sequelize.define('User',{
     isVerified:{
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    },
+    about:{
+        type:DataTypes.STRING
+    },
+    isUserSuperadmin:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false
     }
 })
 
