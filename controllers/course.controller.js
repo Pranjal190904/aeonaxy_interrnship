@@ -8,12 +8,14 @@ const course={
     courses:async(req,res)=>{
         try{
             const filter=req.query;
+            const {page=1,limit=10}=req.query;
+            const offset = (page - 1) * limit;
             if(!filter)
             {
-                let courses=await Course.findAll();
+                let courses=await Course.findAll({limit:parseInt(limit),offset:offset});
                 return res.status(200).json({courses});
             }
-            let courses=await Course.findAll({where:filter});
+            let courses=await Course.findAll({where:filter,limit:parseInt(limit),offset:offset});
             return res.status(200).json({courses});
         }
         catch(err)

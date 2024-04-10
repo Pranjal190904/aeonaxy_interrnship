@@ -8,17 +8,29 @@ const User=sequelize.define('User',{
         primaryKey: true
     },
     name:{
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false
     },
     email:{
         type:DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate:{
+            isEmail:{
+                msg:'invalid email'
+            }
+        }
     },
     password:{
         type:DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        validate:{
+            isStrongPassword(value) {
+                if (!/\d/.test(value) || !/[a-zA-Z]/.test(value) || value.length < 8) {
+                    throw new Error('Password must be at least 8 characters long and contain at least one letter and one number');
+                }
+            }
+        }
     },
     profilePhoto:{
         type:DataTypes.STRING
